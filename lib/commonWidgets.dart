@@ -25,14 +25,14 @@ Widget commonText(
   );
 }
 
-Widget commonBackButton() {
+Widget commonBackButton({Color? color}) {
   return InkWell(
     onTap: () => Get.back(),
     borderRadius: BorderRadius.circular(20),
     child: Container(
-      padding: const EdgeInsets.all(6),
+      padding: EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: Color(0xFFECECEC),
+        color: color ?? Color(0xFFECECEC),
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -284,6 +284,41 @@ Widget commonBorderedButton({
                   ),
         ),
       ),
+    ),
+  );
+}
+
+Widget gradientLinearProgress(
+  double value, {
+  double height = 8,
+  Color startColor = AppColors.buttonColour,
+  Color endColor = AppColors.primaryPink,
+}) {
+  return Container(
+    height: height,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: Colors.white10,
+      borderRadius: BorderRadius.circular(50),
+    ),
+    child: LayoutBuilder(
+      builder: (context, constraints) {
+        return Stack(
+          children: [
+            Container(
+              width: constraints.maxWidth * value,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                gradient: LinearGradient(
+                  colors: [startColor, endColor], // Example gradient colors
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     ),
   );
 }

@@ -1,4 +1,4 @@
-import 'package:bondly/auth/invite_selection_page.dart';
+import 'package:bondly/home/chat_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode:
           ThemeMode.light, // <-- This respects system theme (dark or light)
-      home: InviteSelectionScreen(),
+      home: AiChatPage(),
     );
   }
 }
 
-// https://chatgpt.com/c/68256c0a-de18-8010-8310-eda733c5a8b9
+//https://chatgpt.com/c/68258433-0b40-8010-b10e-3a5c5934b571
