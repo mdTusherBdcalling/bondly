@@ -1,40 +1,52 @@
-import 'package:bondly/commonDesign.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/colors.dart';
 import 'package:bondly/commonWidgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteColour,
 
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(context),
-              const SizedBox(height: 16),
-              _jointBalanceCard(context),
-              const SizedBox(height: 24),
-              _smartSuggestionCard(context),
-              const SizedBox(height: 24),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 40),
+            _buildHeader(context),
+            const SizedBox(height: 16),
+            _jointBalanceCard(context),
+            const SizedBox(height: 24),
+            _smartSuggestionCard(context),
+            const SizedBox(height: 24),
 
-              _investmentPortfolioSection(context),
-              const SizedBox(height: 24),
-              _goalsSection(context),
-              const SizedBox(height: 24),
-              _budgetSection(context),
-              const SizedBox(height: 24),
-              _transactionSection(context),
-              const SizedBox(height: 24),
-              buildActivityDateSelector(context, 21),
-            ],
-          ),
+            _investmentPortfolioSection(context),
+            const SizedBox(height: 24),
+            _goalsSection(context),
+            const SizedBox(height: 24),
+            _budgetSection(context),
+            const SizedBox(height: 24),
+            _transactionSection(context),
+            const SizedBox(height: 24),
+            ExpandableDateSelector(
+              initialDate: selectedDate,
+              onDateSelected: (date) {
+                setState(() {
+                  selectedDate = date;
+                });
+              },
+              isExpanded: false,
+            ),
+          ],
         ),
       ),
     );
@@ -139,12 +151,17 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        Image.asset(
-          "assets/menu.png",
-          color:
-              (Theme.of(context).brightness == Brightness.dark)
-                  ? AppColors.buttonColour
-                  : AppColors.blackColour,
+        InkWell(
+          onTap: () {
+            showCustomMenu(context);
+          },
+          child: Image.asset(
+            "assets/menu.png",
+            color:
+                (Theme.of(context).brightness == Brightness.dark)
+                    ? AppColors.buttonColour
+                    : AppColors.blackColour,
+          ),
         ),
       ],
     );
@@ -530,98 +547,170 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget buildActivityDateSelector(BuildContext context, int selectedDate) {
-    final days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    final dates = [18, 19, 20, 21, 22, 23, 24];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        commonText(
-          "Track Your Daily Activity",
-          context: context,
-          size: 16,
-          isBold: true,
-        ),
-        const SizedBox(height: 12),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          decoration: BoxDecoration(
-            color: AppColors.primaryBlue,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
+  Widget transactionItem(
+    String title,
+    String amount,
+    String date,
+    BuildContext context,
+  ) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: AppColors.primaryBlueLight,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               commonText(
-                "April",
+                title,
                 context: context,
+                size: 14,
+                isBold: true,
                 color: AppColors.whiteColour,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: List.generate(days.length, (index) {
-                  bool isSelected = dates[index] == selectedDate;
-                  return Center(
-                    child: Container(
-                      padding:
-                          (isSelected)
-                              ? EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 16,
-                              )
-                              : null,
-                      decoration: BoxDecoration(
-                        gradient:
-                            isSelected
-                                ? LinearGradient(
-                                  colors: [
-                                    Color(0xFF703EFF),
-                                    Color(0xFFEC66FE),
-                                  ],
-                                )
-                                : null,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        children: [
-                          commonText(
-                            dates[index].toString(),
-                            isBold: true,
-                            size: 16,
-                            color: AppColors.whiteColour,
-                            context: context,
-                          ),
-                          SizedBox(height: 4),
-                          commonText(
-                            days[index],
-                            context: context,
-                            size: 12,
-                            color: AppColors.whiteColour,
-                          ),
-                          if (isSelected)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 6),
-                              child: Container(
-                                width: 6,
-                                height: 6,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.whiteColour,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
+              commonText(
+                date,
+                context: context,
+                size: 12,
+                color: AppColors.whiteColour,
               ),
             ],
           ),
-        ),
-      ],
+          commonText(
+            amount,
+            context: context,
+            size: 14,
+            color: AppColors.whiteColour,
+            isBold: true,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget budgetItem(
+    String title,
+    String amount,
+    String limit,
+    String label,
+    BuildContext context, {
+    double progress = 0.45,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: AppColors.primaryBlueLight,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              commonText(
+                title,
+                context: context,
+                size: 14,
+                isBold: true,
+                color: Colors.white,
+              ),
+              commonText(
+                amount,
+                context: context,
+                size: 14,
+                isBold: true,
+                color: AppColors.whiteColour,
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              commonText(
+                limit,
+                context: context,
+                size: 12,
+                color: AppColors.whiteColour,
+              ),
+              const SizedBox(width: 16),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 2,
+                ),
+                decoration: BoxDecoration(
+                  color:
+                      (label == "Over Budget")
+                          ? Color(0xFFFEE2E2)
+                          : Color(0xFFFEF9C3),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: commonText(
+                  label,
+                  context: context,
+                  size: 10,
+                  color: Colors.red,
+                  isBold: true,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          gradientLinearProgress(0.45),
+        ],
+      ),
+    );
+  }
+
+  Widget goalCard(
+    String title,
+    String amount,
+    String imagePath,
+    BuildContext context,
+  ) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: AppColors.primaryBlueLight,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(imagePath),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                commonText(
+                  title,
+                  context: context,
+                  size: 14,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 6),
+                commonText(
+                  amount,
+                  context: context,
+                  size: 16,
+                  color: Colors.white,
+                  isBold: true,
+                ),
+                const SizedBox(height: 6),
+                gradientLinearProgress(0.58, height: 5),
+              ],
+            ),
+          ),
+          SizedBox(width: 8),
+          Icon(Icons.arrow_forward_ios, color: AppColors.whiteColour, size: 16),
+        ],
+      ),
     );
   }
 }

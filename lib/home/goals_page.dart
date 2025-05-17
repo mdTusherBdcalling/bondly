@@ -76,12 +76,7 @@ class GoalsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: commonText("Goals", context: context, size: 18, isBold: true),
-        centerTitle: true,
-        leading: commonBackButton(),
-      ),
+      appBar: commonAppBar(context: context, title: "Goals"),
       body: Container(
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(8),

@@ -59,12 +59,7 @@ class BudgetsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: commonText("Budget", context: context, size: 18, isBold: true),
-        centerTitle: true,
-        leading: commonBackButton(),
-      ),
+      appBar: commonAppBar(context: context, title: "Budget"),
 
       body: Container(
         margin: const EdgeInsets.all(8),

@@ -58,27 +58,7 @@ class _AiChatPageState extends State<AiChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: commonText(
-          "Ask Bondly",
-          context: context,
-          size: 18,
-          isBold: true,
-        ),
-        centerTitle: true,
-        leading: commonBackButton(color: Colors.transparent),
-        actions: [
-          Image.asset(
-            "assets/menu.png",
-            color:
-                (Theme.of(context).brightness == Brightness.dark)
-                    ? AppColors.buttonColour
-                    : AppColors.blackColour,
-          ),
-          SizedBox(width: 12),
-        ],
-      ),
+      appBar: commonAppBar(title: "Ask Bondly", context: context),
       body: Column(
         children: [
           Expanded(
