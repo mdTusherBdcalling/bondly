@@ -88,9 +88,9 @@ Widget commonButton({
   Color fgColor = AppColors.whiteColour,
   double borderRadius = 12,
   bool isLoading = false,
-  bool haveNextIcon = false,
   double textSize = 16,
   TextAlign textAlign = TextAlign.center,
+  String? imagePath,
 }) {
   return GestureDetector(
     onTap: isLoading ? null : onTap,
@@ -112,6 +112,15 @@ Widget commonButton({
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        if (imagePath != null)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Image.asset(
+                              imagePath,
+                              height: textSize, // icon size match text height
+                              width: textSize,
+                            ),
+                          ),
                         commonText(
                           title,
                           context: context,
@@ -120,15 +129,6 @@ Widget commonButton({
                           color: fgColor,
                           isBold: true,
                         ),
-                        if (haveNextIcon)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Image.asset(
-                              "assets/arrow.png",
-                              height: textSize, // icon size match text height
-                              width: textSize,
-                            ),
-                          ),
                       ],
                     ),
                   ),
@@ -341,26 +341,35 @@ Widget gradientLinearProgress(
   );
 }
 
-AppBar commonAppBar({required BuildContext context, required String title}) {
+AppBar commonAppBar({
+  required BuildContext context,
+  required String title,
+  bool menushow = true,
+}) {
   return AppBar(
     elevation: 0,
+    backgroundColor:
+        (Theme.of(context).brightness == Brightness.light)
+            ? AppColors.whiteColour
+            : AppColors.primaryBlue,
     title: commonText(title, context: context, size: 18, isBold: true),
     centerTitle: true,
     leading: commonBackButton(color: Colors.transparent),
     actions: [
-      InkWell(
-        onTap: () {
-          // GlobalScaffoldKey.key.currentState?.openEndDrawer();
-          showCustomMenu(context);
-        },
-        child: Image.asset(
-          "assets/menu.png",
-          color:
-              (Theme.of(context).brightness == Brightness.dark)
-                  ? AppColors.buttonColour
-                  : AppColors.blackColour,
+      if (menushow)
+        InkWell(
+          onTap: () {
+            // GlobalScaffoldKey.key.currentState?.openEndDrawer();
+            showCustomMenu(context);
+          },
+          child: Image.asset(
+            "assets/menu.png",
+            color:
+                (Theme.of(context).brightness == Brightness.dark)
+                    ? AppColors.buttonColour
+                    : AppColors.blackColour,
+          ),
         ),
-      ),
       SizedBox(width: 12),
     ],
   );

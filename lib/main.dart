@@ -1,10 +1,4 @@
-import 'package:bondly/home/budget_overview_page.dart';
-import 'package:bondly/home/custom_drawer.dart';
-import 'package:bondly/home/daily_activity_page.dart';
-import 'package:bondly/home/daily_activity_page2.dart';
-import 'package:bondly/home/goal_achived.dart';
-import 'package:bondly/home/goal_overview.dart';
-import 'package:bondly/root_page.dart';
+import 'package:bondly/profile/CouplePlanReadyScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +27,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode:
           ThemeMode.light, // <-- This respects system theme (dark or light)
-      home: GoalOverviewPage(),
+      home: CouplePlanReadyScreen(),
     );
   }
 }
