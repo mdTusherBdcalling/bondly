@@ -1,6 +1,9 @@
+import 'package:bondly/auth/invite_pattner_page.dart';
+import 'package:bondly/auth/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class SoloScreen extends StatelessWidget {
   const SoloScreen({Key? key}) : super(key: key);
@@ -16,7 +19,7 @@ class SoloScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               commonText("Welcome", context: context, size: 21, isBold: true),
@@ -35,6 +38,10 @@ class SoloScreen extends StatelessWidget {
                 title: "Invite Your Partner",
                 onTap: () {
                   // TODO: Navigate to Invite Partner screen
+                  Get.to(
+                    () => InvitePartnerScreen(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 bgColor: primaryColor,
                 fgColor: Colors.white,
@@ -48,13 +55,16 @@ class SoloScreen extends StatelessWidget {
               OutlinedButton(
                 onPressed: () {
                   // TODO: Skip action
+                  Get.to(
+                    () => SignUpScreen(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 child: commonText(
                   "Skip",
                   context: context,
                   size: 16,
                   isBold: true,
-                  color: Colors.black,
                 ),
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),

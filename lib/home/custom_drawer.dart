@@ -19,8 +19,8 @@ class CustomDrawer extends StatelessWidget {
   }) : super(key: key);
 
   final List<_DrawerMenuItem> menuItems = [
-    _DrawerMenuItem("Profile", "assets/drawer/profile.png"),
     _DrawerMenuItem("Settings", "assets/drawer/settings.png"),
+    _DrawerMenuItem("Notification", "assets/basil_notification-on-solid.png"),
     _DrawerMenuItem("Share App", "assets/drawer/share.png"),
     _DrawerMenuItem("Rate App", "assets/drawer/rating.png"),
     _DrawerMenuItem("Help & Support", "assets/drawer/help_and_support.png"),

@@ -1,6 +1,8 @@
+import 'package:bondly/auth/profile/solo_18.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class LookingForwardScreen extends StatelessWidget {
   const LookingForwardScreen({super.key});
@@ -34,7 +36,7 @@ class LookingForwardScreen extends StatelessWidget {
                 context: context,
                 size: 22,
                 isBold: true,
-                color: Colors.grey.shade800,
+
                 textAlign: TextAlign.center,
               ),
             ),
@@ -54,6 +56,10 @@ class LookingForwardScreen extends StatelessWidget {
               title: "See My Plan",
               onTap: () {
                 // Navigate to the plan page
+                Get.to(
+                  () => Solo18Screen(),
+                  transition: Transition.rightToLeft,
+                );
               },
               height: 50,
               width: double.infinity,

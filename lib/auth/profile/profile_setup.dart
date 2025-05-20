@@ -1,6 +1,8 @@
+import 'package:bondly/auth/profile/profilesetup_2.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class ProfileSetupPage extends StatefulWidget {
   const ProfileSetupPage({super.key});
@@ -153,6 +155,10 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             title: "Next",
             onTap: () {
               // Handle next step
+              Get.to(
+                () => ProfileSetupPage2(),
+                transition: Transition.rightToLeft,
+              );
             },
             height: 50,
             borderRadius: 0,

@@ -1,6 +1,8 @@
+import 'package:bondly/auth/profile/BondlyFitScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class ProfileSetupPage2 extends StatefulWidget {
   const ProfileSetupPage2({super.key});
@@ -153,6 +155,10 @@ class _ProfileSetupPage2State extends State<ProfileSetupPage2> {
             title: "Next",
             onTap: () {
               // Go to next setup screen or complete
+              Get.to(
+                () => BondlyFitScreen(),
+                transition: Transition.rightToLeft,
+              );
             },
             height: 50,
             borderRadius: 0,

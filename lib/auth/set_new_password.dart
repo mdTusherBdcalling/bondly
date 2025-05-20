@@ -1,6 +1,8 @@
+import 'package:bondly/auth/password_reset_confirmation_page.dart';
 import 'package:bondly/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class SetNewPasswordScreen extends StatefulWidget {
   const SetNewPasswordScreen({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               // Title and subtitle
@@ -43,7 +45,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                 "Create a new password. Ensure it differs from previous ones for security",
                 context: context,
                 size: 14,
-                color: AppColors.greyColour,
+
                 isBold: true,
               ),
               const SizedBox(height: 32),
@@ -122,6 +124,10 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                   // TODO: Call update password API here
 
                   print("Password updated successfully.");
+                  Get.to(
+                    () => PasswordResetConfirmationScreen(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 bgColor: primaryColor,
                 fgColor: Colors.white,

@@ -1,6 +1,10 @@
+import 'package:bondly/auth/couple_page.dart';
+import 'package:bondly/auth/login_page.dart';
+import 'package:bondly/auth/solo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class InviteSelectionScreen extends StatefulWidget {
   const InviteSelectionScreen({Key? key}) : super(key: key);
@@ -12,7 +16,7 @@ class InviteSelectionScreen extends StatefulWidget {
 enum UserType { solo, couple }
 
 class _InviteSelectionScreenState extends State<InviteSelectionScreen> {
-  UserType selectedType = UserType.couple;
+  UserType? selectedType;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +34,18 @@ class _InviteSelectionScreenState extends State<InviteSelectionScreen> {
           setState(() {
             selectedType = type;
           });
+          if (selectedType == UserType.solo) {
+            Get.to(() => SoloScreen(), transition: Transition.rightToLeft);
+          } else if (selectedType == UserType.couple) {
+            Get.to(() => CoupleScreen(), transition: Transition.rightToLeft);
+          }
         },
         child: Container(
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: isSelected ? Colors.white : Colors.transparent,
+            color: Colors.transparent,
             border: Border.all(
               color: isSelected ? primaryColor : Colors.grey.shade400,
               width: isSelected ? 2.5 : 1.2,
@@ -102,7 +111,7 @@ class _InviteSelectionScreenState extends State<InviteSelectionScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               commonText("Sign up", context: context, size: 28, isBold: true),
@@ -145,6 +154,10 @@ class _InviteSelectionScreenState extends State<InviteSelectionScreen> {
                     GestureDetector(
                       onTap: () {
                         // TODO: Navigate to login screen
+                        Get.to(
+                          () => LoginScreen(),
+                          transition: Transition.rightToLeft,
+                        );
                       },
                       child: commonText(
                         "Log In",

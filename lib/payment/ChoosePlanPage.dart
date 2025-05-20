@@ -1,15 +1,17 @@
+import 'package:bondly/payment/PaymentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
-class ChoosePlanPage extends StatefulWidget {
-  const ChoosePlanPage({Key? key}) : super(key: key);
+class ChooseSoloPlanPage extends StatefulWidget {
+  const ChooseSoloPlanPage({Key? key}) : super(key: key);
 
   @override
-  State<ChoosePlanPage> createState() => _ChoosePlanPageState();
+  State<ChooseSoloPlanPage> createState() => _ChooseSoloPlanPageState();
 }
 
-class _ChoosePlanPageState extends State<ChoosePlanPage> {
+class _ChooseSoloPlanPageState extends State<ChooseSoloPlanPage> {
   bool isMonthly = true;
 
   @override
@@ -237,6 +239,7 @@ class _ChoosePlanPageState extends State<ChoosePlanPage> {
               title: "Start Your Free 7-Day Trial",
               onTap: () {
                 // Your onTap logic
+                Get.to(() => PaymentPage(), transition: Transition.rightToLeft);
               },
               bgColor: AppColors.buttonColour,
               fgColor: Colors.white,

@@ -1,6 +1,8 @@
+import 'package:bondly/Quizzes/quiz_question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PartnerTurnPage extends StatelessWidget {
@@ -33,7 +35,7 @@ class PartnerTurnPage extends StatelessWidget {
               context: context,
               size: 20,
               isBold: true,
-              color: Colors.grey[700],
+
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -41,7 +43,7 @@ class PartnerTurnPage extends StatelessWidget {
               "Share the quiz with your partner or jump in as Player 2 and see how well you really know each other.",
               context: context,
               size: 14,
-              color: Colors.grey[600],
+
               textAlign: TextAlign.center,
             ),
 
@@ -94,6 +96,10 @@ class PartnerTurnPage extends StatelessWidget {
               title: "Start as Player 2",
               onTap: () {
                 // Navigate to quiz start or player 2 screen
+                Get.to(
+                  () => QuizQuestionPage(isPlayer2: true),
+                  transition: Transition.rightToLeft,
+                );
               },
               height: 50,
               borderRadius: 12,

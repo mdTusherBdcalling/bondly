@@ -1,6 +1,11 @@
+import 'package:bondly/home/budget_page.dart';
+import 'package:bondly/home/daily_activity_page.dart';
+import 'package:bondly/home/goals_page.dart';
+import 'package:bondly/home/transctions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/colors.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,8 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColour,
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
@@ -37,14 +40,23 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 24),
             _transactionSection(context),
             const SizedBox(height: 24),
-            ExpandableDateSelector(
-              initialDate: selectedDate,
-              onDateSelected: (date) {
-                setState(() {
-                  selectedDate = date;
-                });
+            InkWell(
+              onTap: () {
+                Get.to(
+                  () => DailyActivityPage(),
+                  transition: Transition.rightToLeft,
+                );
               },
-              isExpanded: false,
+              child: ExpandableDateSelector(
+                initialDate: selectedDate,
+                onDateSelected: (date) {
+                  Get.to(
+                    () => DailyActivityPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+                isExpanded: false,
+              ),
             ),
           ],
         ),
@@ -503,7 +515,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         const SizedBox(height: 8),
-        _seeMoreButton(context),
+        _seeMoreButton(context, () {
+          Get.to(() => GoalsPage(), transition: Transition.rightToLeft);
+        }),
       ],
     );
   }
@@ -518,7 +532,9 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(height: 12),
         budgetItem("House", "\$850", "\$750 of \$800", "Near Limit", context),
         const SizedBox(height: 8),
-        _seeMoreButton(context),
+        _seeMoreButton(context, () {
+          Get.to(() => BudgetsPage(), transition: Transition.rightToLeft);
+        }),
       ],
     );
   }
@@ -533,16 +549,18 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(height: 12),
         transactionItem("House", "\$100", "20 March, 2025", context),
         const SizedBox(height: 8),
-        _seeMoreButton(context),
+        _seeMoreButton(context, () {
+          Get.to(() => TransactionsPage(), transition: Transition.rightToLeft);
+        }),
       ],
     );
   }
 
-  Widget _seeMoreButton(BuildContext context) {
+  Widget _seeMoreButton(BuildContext context, Function() ontap) {
     return commonButton(
       context: context,
       title: "See More",
-      onTap: () {},
+      onTap: ontap,
       height: 32,
     );
   }

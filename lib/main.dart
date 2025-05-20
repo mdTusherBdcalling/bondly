@@ -1,4 +1,5 @@
-import 'package:bondly/profile/CouplePlanReadyScreen.dart';
+import 'package:bondly/colors.dart';
+import 'package:bondly/intro/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,16 +8,60 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final lightTheme = ThemeData(
+  final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primarySwatch: Colors.blue,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: AppColors.whiteColour, // background white
+    primaryColor: AppColors.buttonColour,
+    colorScheme: ColorScheme.light(
+      primary: AppColors.buttonColour,
+      onPrimary: AppColors.whiteColour,
+      background: AppColors.whiteColour,
+      onBackground: AppColors.blackColour,
+      surface: Colors.white,
+      onSurface: AppColors.blackColour,
+    ),
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(color: AppColors.blackColour),
+      titleMedium: TextStyle(color: AppColors.blackColour),
+      titleSmall: TextStyle(color: AppColors.blackColour),
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.whiteColour,
+      iconTheme: IconThemeData(color: AppColors.blackColour),
+      titleTextStyle: TextStyle(
+        color: AppColors.blackColour,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
   );
 
-  final darkTheme = ThemeData(
+  final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primarySwatch: Colors.blue,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: AppColors.blackColour, // dark bg
+    primaryColor: AppColors.buttonColour,
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.buttonColour,
+      onPrimary: AppColors.whiteColour,
+      background: AppColors.primaryBlue,
+      onBackground: AppColors.whiteColour,
+      surface: AppColors.primaryBlueLight,
+      onSurface: AppColors.whiteColour,
+    ),
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(color: AppColors.whiteColour),
+      titleLarge: TextStyle(color: AppColors.whiteColour),
+      titleSmall: TextStyle(color: AppColors.whiteColour),
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.primaryBlue,
+      iconTheme: IconThemeData(color: AppColors.whiteColour),
+      titleTextStyle: TextStyle(
+        color: AppColors.whiteColour,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
   );
 
   @override
@@ -25,9 +70,8 @@ class MyApp extends StatelessWidget {
       title: 'System Theme Demo',
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode:
-          ThemeMode.light, // <-- This respects system theme (dark or light)
-      home: CouplePlanReadyScreen(),
+
+      home: SplashScreen(),
     );
   }
 }

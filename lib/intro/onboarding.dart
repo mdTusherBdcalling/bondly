@@ -1,5 +1,7 @@
+import 'package:bondly/auth/invite_selection_page.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Onboarding page widget
 class OnboardingPage extends StatelessWidget {
@@ -45,16 +47,7 @@ class OnboardingPage extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          commonButton(
-            context: context,
-            title: "Next",
-            onTap: onNext,
-            bgColor: const Color(0xFF6C4DFF),
-            fgColor: Colors.white,
-            height: 50,
-            borderRadius: 12,
-            width: double.infinity,
-          ),
+          commonButton(context: context, title: "Next", onTap: onNext),
         ],
       ),
     );
@@ -118,6 +111,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
         onNext: () {
           print("Onboarding finished");
+          Get.to(
+            () => InviteSelectionScreen(),
+            transition: Transition.rightToLeft,
+          );
         },
       ),
     ]);

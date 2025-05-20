@@ -1,6 +1,7 @@
+import 'package:bondly/auth/profile/profile_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class WormWelcomeScreenSolo extends StatelessWidget {
   const WormWelcomeScreenSolo({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class WormWelcomeScreenSolo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               commonText(
@@ -30,7 +31,7 @@ class WormWelcomeScreenSolo extends StatelessWidget {
                 "Answer a few quick questions so we can craft a smarter financial journey just for you.",
                 context: context,
                 size: 14,
-                color: AppColors.greyColour,
+
                 textAlign: TextAlign.center,
               ),
 
@@ -41,6 +42,11 @@ class WormWelcomeScreenSolo extends StatelessWidget {
                 title: "Let’s Go",
                 onTap: () {
                   // TODO: Navigate to questions or next step
+
+                  Get.to(
+                    () => ProfileSetupPage(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
               ),
             ],

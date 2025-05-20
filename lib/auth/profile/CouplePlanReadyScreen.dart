@@ -57,7 +57,7 @@ class CouplePlanReadyScreen extends StatelessWidget {
                 "Based on your answers, here’s how Bondly will help you achieve your goals and build a stronger future.",
                 context: context,
                 size: 14,
-                color: Colors.grey.shade700,
+
                 textAlign: TextAlign.center,
               ),
             ),

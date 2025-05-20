@@ -1,6 +1,8 @@
+import 'package:bondly/auth/invite_sent.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class InvitePartnerScreen extends StatefulWidget {
   const InvitePartnerScreen({Key? key}) : super(key: key);
@@ -23,7 +25,10 @@ class _InvitePartnerScreenState extends State<InvitePartnerScreen> {
           isBold: true,
         ),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios_new),
+        leading: InkWell(
+          onTap: () => Get.back(),
+          child: Icon(Icons.arrow_back_ios_new),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -64,6 +69,11 @@ class _InvitePartnerScreenState extends State<InvitePartnerScreen> {
 
                 // TODO: Invite partner API call here
                 print("Inviting partner: ${partnerEmailController.text}");
+
+                Get.to(
+                  () => InviteSentScreen(),
+                  transition: Transition.rightToLeft,
+                );
               },
             ),
           ],

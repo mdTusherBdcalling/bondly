@@ -1,9 +1,11 @@
+import 'package:bondly/auth/invite_pattner_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
-class CoupleInviteScreen extends StatelessWidget {
-  const CoupleInviteScreen({Key? key}) : super(key: key);
+class CoupleScreen extends StatelessWidget {
+  const CoupleScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class CoupleInviteScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               commonText(
@@ -41,6 +43,11 @@ class CoupleInviteScreen extends StatelessWidget {
                 title: "Invite Your Partner",
                 onTap: () {
                   // TODO: Navigate to Invite Partner screen or action
+
+                  Get.to(
+                    () => InvitePartnerScreen(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 bgColor: primaryColor,
                 fgColor: Colors.white,

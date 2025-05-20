@@ -1,5 +1,8 @@
+import 'package:bondly/auth/login_page.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:bondly/intro/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -35,7 +38,10 @@ class SplashScreen extends StatelessWidget {
                       context: context,
                       title: 'Log In',
                       onTap: () {
-                        // TODO: Navigate to login
+                        Get.to(
+                          () => LoginScreen(),
+                          transition: Transition.rightToLeft,
+                        );
                       },
 
                       height: 50,
@@ -48,7 +54,10 @@ class SplashScreen extends StatelessWidget {
                       context: context,
                       title: 'Get Started',
                       onTap: () {
-                        // TODO: Navigate to get started
+                        Get.to(
+                          () => OnboardingScreen(),
+                          transition: Transition.rightToLeft,
+                        );
                       },
 
                       fgColor: Colors.white,

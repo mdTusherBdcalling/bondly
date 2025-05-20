@@ -277,7 +277,11 @@ class _AiChatPageState extends State<AiChatPage> {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.arrow_circle_right, size: 48),
+              icon: Icon(
+                Icons.arrow_circle_right,
+                size: 48,
+                color: AppColors.greyColour.withOpacity(0.8),
+              ),
               onPressed: () {
                 final text = _messageController.text.trim();
                 if (text.isEmpty) return;

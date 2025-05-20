@@ -1,6 +1,10 @@
+import 'dart:async';
+import 'dart:math';
+import 'package:bondly/Quizzes/result_page.dart';
 import 'package:flutter/material.dart';
-import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart'; // for navigation
 import 'package:bondly/colors.dart';
+import 'package:bondly/commonWidgets.dart';
 
 class AnalyzingPage extends StatefulWidget {
   const AnalyzingPage({super.key});
@@ -13,6 +17,7 @@ class _AnalyzingPageState extends State<AnalyzingPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _progressAnimation;
+  final List<Widget> _hearts = [];
 
   @override
   void initState() {
@@ -30,6 +35,42 @@ class _AnalyzingPageState extends State<AnalyzingPage>
     });
 
     _controller.forward();
+
+    _generateFloatingHearts();
+
+    // Stop animation and navigate after 5 seconds
+    Timer(const Duration(seconds: 4), () {
+      _controller.stop();
+      if (mounted) {
+        // Replace YourNextPage() with the page widget you want to navigate to
+        Get.off(() => ResultPage());
+      }
+    });
+  }
+
+  void _generateFloatingHearts() {
+    final colors = [
+      Colors.pinkAccent,
+      Colors.greenAccent,
+      Colors.orangeAccent,
+      Colors.purpleAccent,
+      Colors.yellow,
+      Colors.blue.shade200,
+    ];
+    final random = Random();
+
+    for (int i = 0; i < 25; i++) {
+      _hearts.add(
+        AnimatedHeart(
+          delay: Duration(milliseconds: random.nextInt(1000)),
+          color: colors[random.nextInt(colors.length)],
+          size: 40 + random.nextInt(12).toDouble(),
+          left: random.nextDouble(),
+          top: random.nextDouble(),
+          duration: Duration(seconds: 6 + random.nextInt(5)),
+        ),
+      );
+    }
   }
 
   @override
@@ -46,12 +87,9 @@ class _AnalyzingPageState extends State<AnalyzingPage>
         title: "Analyzing",
         menushow: false,
       ),
-
       body: Stack(
-        alignment: Alignment.center,
         children: [
-          Image.asset("assets/lovebg.png", fit: BoxFit.fitWidth),
-
+          ..._hearts,
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -65,11 +103,8 @@ class _AnalyzingPageState extends State<AnalyzingPage>
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 20),
-
-                // Heart + progress bar
                 SizedBox(
                   height: 50,
-
                   child: Stack(
                     alignment: Alignment.centerLeft,
                     children: [
@@ -113,6 +148,75 @@ class _AnalyzingPageState extends State<AnalyzingPage>
           ),
         ],
       ),
+    );
+  }
+}
+
+class AnimatedHeart extends StatefulWidget {
+  final double size;
+  final Color color;
+  final double left;
+  final double top;
+  final Duration duration;
+  final Duration delay;
+
+  const AnimatedHeart({
+    super.key,
+    required this.size,
+    required this.color,
+    required this.left,
+    required this.top,
+    required this.duration,
+    required this.delay,
+  });
+
+  @override
+  State<AnimatedHeart> createState() => _AnimatedHeartState();
+}
+
+class _AnimatedHeartState extends State<AnimatedHeart>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(duration: widget.duration, vsync: this);
+
+    Future.delayed(widget.delay, () {
+      if (mounted) {
+        _controller.repeat();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (_, child) {
+        final t = _controller.value * 2 * pi;
+
+        final dx =
+            widget.left * screenSize.width + 10 * sin(t * 2 + widget.left * 5);
+        final dy =
+            widget.top * screenSize.height + 10 * cos(t * 3 + widget.top * 5);
+
+        return Positioned(
+          left: dx,
+          top: dy,
+          child: Icon(Icons.favorite, size: widget.size, color: widget.color),
+        );
+      },
     );
   }
 }

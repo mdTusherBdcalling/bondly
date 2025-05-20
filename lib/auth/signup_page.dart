@@ -1,5 +1,6 @@
 import 'package:bondly/auth/login_page.dart';
 import 'package:bondly/colors.dart';
+import 'package:bondly/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:get/get.dart'; // your common widgets import
@@ -32,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                commonBackButton(),
+                commonBackButton(context: context),
                 const SizedBox(height: 16),
 
                 // Title and subtitle
@@ -42,7 +43,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   "Sign up to grow your love and wealth — together.",
                   context: context,
                   size: 14,
-                  color: AppColors.greyColour,
                 ),
                 const SizedBox(height: 32),
 
@@ -143,7 +143,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return;
                     }
 
-                    // TODO: Proceed with signup
+                    Get.to(
+                      () => RootPage(),
+                      transition: Transition.rightToLeft,
+                    );
                   },
                   bgColor: AppColors.buttonColour,
                   fgColor: Colors.white,
@@ -160,12 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Expanded(child: Divider(thickness: 1)),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: commonText(
-                        "Or",
-                        context: context,
-                        size: 14,
-                        color: AppColors.greyColour,
-                      ),
+                      child: commonText("Or", context: context, size: 14),
                     ),
                     const Expanded(child: Divider(thickness: 1)),
                   ],
@@ -236,7 +234,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Already have an account? ",
                         context: context,
                         size: 14,
-                        color: AppColors.greyColour,
                       ),
                       GestureDetector(
                         onTap: () {

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
 
-class AddNewBudgetPage extends StatefulWidget {
-  const AddNewBudgetPage({super.key});
+class AddNewGoalPage extends StatefulWidget {
+  const AddNewGoalPage({super.key});
 
   @override
-  State<AddNewBudgetPage> createState() => _AddNewBudgetPageState();
+  State<AddNewGoalPage> createState() => _AddNewGoalPageState();
 }
 
-class _AddNewBudgetPageState extends State<AddNewBudgetPage> {
+class _AddNewGoalPageState extends State<AddNewGoalPage> {
   final TextEditingController goalNameController = TextEditingController();
   final TextEditingController targetAmountController = TextEditingController();
   final TextEditingController startingAmountController =
@@ -22,7 +22,7 @@ class _AddNewBudgetPageState extends State<AddNewBudgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: commonAppBar(context: context, title: "Add New Budget"),
+      appBar: commonAppBar(context: context, title: "Add New Goal"),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Container(
@@ -38,7 +38,7 @@ class _AddNewBudgetPageState extends State<AddNewBudgetPage> {
                 context: context,
                 controller: goalNameController,
                 hintText: "Home",
-                title: "Budget Name",
+                title: "Goal Name",
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Image.asset("assets/house.png"),
@@ -89,7 +89,7 @@ class _AddNewBudgetPageState extends State<AddNewBudgetPage> {
               const SizedBox(height: 32),
               commonButton(
                 context: context,
-                title: "Create Budget",
+                title: "Create Goal",
                 onTap: () {
                   // TODO: Add creation logic here
                   final goalName = goalNameController.text.trim();

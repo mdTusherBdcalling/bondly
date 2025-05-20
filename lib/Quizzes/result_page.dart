@@ -198,6 +198,38 @@ class ResultPage extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
               ),
+              SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.auto_awesome_sharp),
+                      label: commonText(
+                        "Ask Bondly to Discuss Results",
+                        context: context,
+
+                        isBold: true,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+
+                        shadowColor: Colors.transparent,
+
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          side: BorderSide(width: 2),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 16,
+                        ),
+                      ),
+                      iconAlignment: IconAlignment.end,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

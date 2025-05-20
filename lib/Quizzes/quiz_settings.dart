@@ -1,6 +1,8 @@
+import 'package:bondly/Quizzes/quiz_question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class QuizSettingsPage extends StatefulWidget {
   const QuizSettingsPage({Key? key}) : super(key: key);
@@ -13,12 +15,6 @@ class _QuizSettingsPageState extends State<QuizSettingsPage> {
   String? selectedOption;
 
   final List<String> options = ["Money Vibes Check", "Your Risk Comfort Zone"];
-
-  @override
-  void initState() {
-    super.initState();
-    selectedOption = options[1]; // default selected option
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +94,21 @@ class _QuizSettingsPageState extends State<QuizSettingsPage> {
             context: context,
             title: "Next",
             borderRadius: 0,
-            onTap: () {},
+            onTap: () {
+              if (selectedOption == "Money Vibes Check") {
+                Get.to(
+                  () => QuizQuestionPage(isPlayer2: false),
+                  transition: Transition.rightToLeft,
+                );
+              } else if (selectedOption == "Your Risk Comfort Zone") {
+                Get.to(
+                  () => QuizQuestionPage(isPlayer2: false),
+                  transition: Transition.rightToLeft,
+                );
+              } else {
+                commonSnackbar(message: "Please Sellect one");
+              }
+            },
           ),
         ],
       ),

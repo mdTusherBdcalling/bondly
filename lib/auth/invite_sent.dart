@@ -1,9 +1,11 @@
+import 'package:bondly/auth/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
-class CoupleInviteDoneScreen extends StatelessWidget {
-  const CoupleInviteDoneScreen({Key? key}) : super(key: key);
+class InviteSentScreen extends StatelessWidget {
+  const InviteSentScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class CoupleInviteDoneScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               commonText(
@@ -31,7 +33,6 @@ class CoupleInviteDoneScreen extends StatelessWidget {
                 "You've invited your partner to join the app",
                 context: context,
                 size: 14,
-                color: AppColors.greyColour,
               ),
               SizedBox(height: 24),
 
@@ -40,7 +41,10 @@ class CoupleInviteDoneScreen extends StatelessWidget {
                 title: "Done",
                 onTap: () {
                   // TODO: Close or navigate to main/home screen
-                  Navigator.pop(context);
+                  Get.to(
+                    () => SignUpScreen(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 bgColor: primaryColor,
                 fgColor: Colors.white,

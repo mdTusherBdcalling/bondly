@@ -1,9 +1,15 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:bondly/Quizzes/analyzing_page.dart';
+import 'package:bondly/Quizzes/partner_turn_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class QuizQuestionPage extends StatefulWidget {
-  const QuizQuestionPage({Key? key}) : super(key: key);
+  bool isPlayer2;
+  QuizQuestionPage({Key? key, required this.isPlayer2}) : super(key: key);
 
   @override
   State<QuizQuestionPage> createState() => _QuizQuestionPageState();
@@ -109,11 +115,12 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
         currentQuestionIndex++;
         selectedAnswerIndex = -1; // Reset selection for new question
       });
+    } else if (currentQuestionIndex == quizData.length - 1 &&
+        widget.isPlayer2) {
+      Get.to(() => AnalyzingPage(), transition: Transition.rightToLeft);
     } else {
       // Quiz complete - handle completion here (e.g., navigate or show summary)
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Quiz completed!")));
+      Get.to(() => PartnerTurnPage(), transition: Transition.rightToLeft);
     }
   }
 
@@ -220,7 +227,11 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
           // Next button
           commonButton(
             context: context,
-            title: "Next",
+            title:
+                (currentQuestionIndex == quizData.length - 1 &&
+                        widget.isPlayer2)
+                    ? "Finish"
+                    : "Next",
             onTap: nextQuestion,
             height: 50,
             borderRadius: 0,

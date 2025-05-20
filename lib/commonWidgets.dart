@@ -1,5 +1,9 @@
 import 'package:bondly/colors.dart';
 import 'package:bondly/home/custom_drawer.dart';
+import 'package:bondly/settings/HelpSupportPage.dart';
+import 'package:bondly/settings/faq_page.dart';
+import 'package:bondly/settings/notification_page.dart';
+import 'package:bondly/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +33,7 @@ Widget commonText(
   );
 }
 
-Widget commonBackButton({Color? color}) {
+Widget commonBackButton({Color? color, required BuildContext context}) {
   return InkWell(
     onTap: () => Get.back(),
     borderRadius: BorderRadius.circular(20),
@@ -42,7 +46,10 @@ Widget commonBackButton({Color? color}) {
       child: Icon(
         Icons.arrow_back_ios_new_rounded,
         size: 24,
-        color: AppColors.blackColour,
+        color:
+            (Theme.of(context).brightness == Brightness.dark)
+                ? AppColors.buttonColour
+                : AppColors.blackColour,
       ),
     ),
   );
@@ -351,10 +358,10 @@ AppBar commonAppBar({
     backgroundColor:
         (Theme.of(context).brightness == Brightness.light)
             ? AppColors.whiteColour
-            : AppColors.primaryBlue,
+            : AppColors.blackColour,
     title: commonText(title, context: context, size: 18, isBold: true),
     centerTitle: true,
-    leading: commonBackButton(color: Colors.transparent),
+    leading: commonBackButton(color: Colors.transparent, context: context),
     actions: [
       if (menushow)
         InkWell(
@@ -408,16 +415,29 @@ void showCustomMenu(BuildContext context) {
 
                 switch (index) {
                   case 0:
+                    Get.to(
+                      () => SettingsPage(),
+                      transition: Transition.rightToLeft,
+                    );
                     break;
                   case 1:
+                    Get.to(
+                      () => NotificationPage(),
+                      transition: Transition.rightToLeft,
+                    );
                     break;
                   case 2:
                     break;
                   case 3:
                     break;
                   case 4:
+                    Get.to(
+                      () => HelpSupportPage(),
+                      transition: Transition.rightToLeft,
+                    );
                     break;
                   case 5:
+                    Get.to(() => FAQPage(), transition: Transition.rightToLeft);
                     break;
                   default:
                     break;

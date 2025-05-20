@@ -1,5 +1,7 @@
+import 'package:bondly/auth/profile/looking_forward.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class BondlyFitScreen extends StatelessWidget {
   const BondlyFitScreen({super.key});
@@ -53,6 +55,10 @@ class BondlyFitScreen extends StatelessWidget {
             title: "Next",
             onTap: () {
               // Go to next screen
+              Get.to(
+                () => LookingForwardScreen(),
+                transition: Transition.rightToLeft,
+              );
             },
             height: 50,
             borderRadius: 0,

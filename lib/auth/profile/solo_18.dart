@@ -1,5 +1,7 @@
+import 'package:bondly/payment/ChoosePlanPage.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class Solo18Screen extends StatelessWidget {
   const Solo18Screen({super.key});
@@ -34,7 +36,7 @@ class Solo18Screen extends StatelessWidget {
                 context: context,
                 size: 22,
                 isBold: true,
-                color: Colors.grey.shade800,
+
                 textAlign: TextAlign.center,
               ),
             ),
@@ -58,12 +60,7 @@ class Solo18Screen extends StatelessWidget {
             ...benefits.map(
               (item) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: commonText(
-                  "✅ $item",
-                  context: context,
-                  size: 16,
-                  color: Colors.grey.shade800,
-                ),
+                child: commonText("✅ $item", context: context, size: 16),
               ),
             ),
             Spacer(),
@@ -72,6 +69,10 @@ class Solo18Screen extends StatelessWidget {
               title: "Get Started With My Plan",
               onTap: () {
                 // Handle navigation
+                Get.to(
+                  () => ChooseSoloPlanPage(),
+                  transition: Transition.rightToLeft,
+                );
               },
             ),
           ],

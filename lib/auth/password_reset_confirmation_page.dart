@@ -1,6 +1,7 @@
+import 'package:bondly/auth/warm_welcome_page_solo.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class PasswordResetConfirmationScreen extends StatelessWidget {
   const PasswordResetConfirmationScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class PasswordResetConfirmationScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 48),
 
               commonText(
@@ -30,7 +31,7 @@ class PasswordResetConfirmationScreen extends StatelessWidget {
                 "Your password has been successfully reset. click confirm to set a new password",
                 context: context,
                 size: 14,
-                color: AppColors.greyColour,
+
                 textAlign: TextAlign.left,
               ),
 
@@ -41,6 +42,11 @@ class PasswordResetConfirmationScreen extends StatelessWidget {
                 title: "Confirm",
                 onTap: () {
                   // TODO: Navigate to set new password screen
+
+                  Get.to(
+                    () => WormWelcomeScreenSolo(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
 
                 height: 50,

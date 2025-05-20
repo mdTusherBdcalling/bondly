@@ -1,6 +1,11 @@
+import 'package:bondly/payment/ChoosePlanPage.dart';
+import 'package:bondly/settings/HelpSupportPage.dart';
+import 'package:bondly/settings/account_settings.dart';
+import 'package:bondly/settings/privacy_and_policy.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -75,6 +80,10 @@ class _SettingsPageState extends State<SettingsPage> {
               iconPath: "assets/settings/account.png",
               onTap: () {
                 // Navigate to Account Settings page
+                Get.to(
+                  () => AccountSettingsPage(),
+                  transition: Transition.rightToLeft,
+                );
               },
             ),
             _settingsOption(
@@ -97,6 +106,10 @@ class _SettingsPageState extends State<SettingsPage> {
               iconPath: "assets/settings/payment.png",
               onTap: () {
                 // Navigate to Payment Method page
+                Get.to(
+                  () => ChooseSoloPlanPage(),
+                  transition: Transition.rightToLeft,
+                );
               },
             ),
             _settingsOption(
@@ -104,6 +117,10 @@ class _SettingsPageState extends State<SettingsPage> {
               iconPath: "assets/settings/privacy.png",
               onTap: () {
                 // Navigate to Privacy & Security page
+                Get.to(
+                  () => PrivacyPolicyPage(),
+                  transition: Transition.rightToLeft,
+                );
               },
             ),
             _settingsOption(
@@ -112,10 +129,14 @@ class _SettingsPageState extends State<SettingsPage> {
               trailing: Switch(
                 value: darkModeEnabled,
                 onChanged: (val) {
-                  setState(() {
-                    darkModeEnabled = val;
-                  });
+                  if (val) {
+                    Get.changeThemeMode(ThemeMode.dark);
+                  } else {
+                    Get.changeThemeMode(ThemeMode.light);
+                  }
+                  setState(() {}); // optional if you want to rebuild local UI
                 },
+
                 activeColor: AppColors.buttonColour,
                 inactiveThumbColor: AppColors.blackColour,
                 inactiveTrackColor: AppColors.whiteColour,
@@ -129,6 +150,10 @@ class _SettingsPageState extends State<SettingsPage> {
               iconPath: "assets/settings/help_and_supports.png",
               onTap: () {
                 // Navigate to Help & Support page
+                Get.to(
+                  () => HelpSupportPage(),
+                  transition: Transition.rightToLeft,
+                );
               },
             ),
             _settingsOption(

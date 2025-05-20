@@ -1,6 +1,9 @@
 import 'package:bondly/colors.dart';
+import 'package:bondly/home/add_new_budget_page.dart';
+import 'package:bondly/home/budget_overview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class BudgetsPage extends StatelessWidget {
   const BudgetsPage({super.key});
@@ -11,7 +14,7 @@ class BudgetsPage extends StatelessWidget {
       "amount": "\$20,000",
       "limit": "\$850 of \$800",
       "label": "Over Budget",
-      "imagePath": "assets/transport.png",
+      "imagePath": "assets/car.png",
       "progress": 0.85,
     },
     {
@@ -35,7 +38,7 @@ class BudgetsPage extends StatelessWidget {
       "amount": "\$20,000",
       "limit": "\$850 of \$800",
       "label": "Over Budget",
-      "imagePath": "assets/transport.png",
+      "imagePath": "assets/car.png",
       "progress": 0.85,
     },
     {
@@ -61,30 +64,70 @@ class BudgetsPage extends StatelessWidget {
     return Scaffold(
       appBar: commonAppBar(context: context, title: "Budget"),
 
-      body: Container(
-        margin: const EdgeInsets.all(8),
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: AppColors.primaryBlue,
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-        ),
-        child: ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: budgetsData.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
-          itemBuilder: (context, index) {
-            final budget = budgetsData[index];
-            return _budgetItem(
-              budget["title"],
-              budget["amount"],
-              budget["limit"],
-              budget["label"],
-              budget["imagePath"],
-              context,
-              progress: budget["progress"],
-            );
-          },
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.all(16),
+              itemCount: budgetsData.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                final budget = budgetsData[index];
+                return InkWell(
+                  onTap: () {
+                    Get.to(
+                      () => BudgetOverviewPage(),
+                      transition: Transition.rightToLeft,
+                    );
+                  },
+                  child: _budgetItem(
+                    budget["title"],
+                    budget["amount"],
+                    budget["limit"],
+                    budget["label"],
+                    budget["imagePath"],
+                    context,
+                    progress: budget["progress"],
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  Get.to(
+                    () => AddNewBudgetPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.only(right: 16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: AppColors.primaryBlue,
+                    border: Border.all(width: 1, color: AppColors.whiteColour),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.add_circle, color: AppColors.whiteColour),
+                      commonText(
+                        "Add New Budget",
+                        context: context,
+                        color: AppColors.whiteColour,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 16),
+        ],
       ),
     );
   }
@@ -115,7 +158,7 @@ class BudgetsPage extends StatelessWidget {
               context: context,
               size: 14,
               isBold: true,
-              color: Colors.white,
+              color: AppColors.whiteColour,
             ),
             trailing: commonText(
               amount,

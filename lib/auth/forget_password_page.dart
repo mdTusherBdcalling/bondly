@@ -1,15 +1,12 @@
+import 'package:bondly/auth/check_email_page.dart';
 import 'package:bondly/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatelessWidget {
+  ForgotPasswordScreen({Key? key}) : super(key: key);
 
-  @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
-}
-
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController emailController = TextEditingController();
 
   @override
@@ -21,7 +18,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               // Title and subtitle
@@ -36,7 +33,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 "Please enter your email to reset the password",
                 context: context,
                 size: 14,
-                color: AppColors.greyColour,
               ),
               const SizedBox(height: 32),
 
@@ -55,9 +51,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 keyboardType: TextInputType.emailAddress,
                 isPassword: false,
               ),
-              const SizedBox(height: 16),
-
-              const Spacer(),
+              const SizedBox(height: 24),
 
               // Reset Password button
               commonButton(
@@ -78,6 +72,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                   print(
                     "Reset password requested for: ${emailController.text}",
+                  );
+
+                  Get.to(
+                    () => CheckEmailScreen(email: emailController.text),
+                    transition: Transition.rightToLeft,
                   );
                 },
                 bgColor: AppColors.buttonColour,

@@ -1,11 +1,13 @@
+import 'package:bondly/auth/set_new_password.dart';
 import 'package:bondly/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
 
 class CheckEmailScreen extends StatefulWidget {
   final String email;
 
-  const CheckEmailScreen({Key? key, required this.email}) : super(key: key);
+  CheckEmailScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   State<CheckEmailScreen> createState() => _CheckEmailScreenState();
@@ -80,7 +82,7 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              commonBackButton(),
+              commonBackButton(context: context),
               const SizedBox(height: 24),
 
               // Title and instructions
@@ -91,12 +93,26 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                 isBold: true,
               ),
               const SizedBox(height: 8),
-              commonText(
-                "We sent a code to ${widget.email.replaceRange(8, widget.email.length - 3, '...')}",
-                context: context,
-                size: 14,
-                color: AppColors.greyColour,
-                isBold: true,
+              Row(
+                children: [
+                  Flexible(
+                    child: commonText(
+                      "We sent a code to ",
+                      context: context,
+                      size: 14,
+                      color: AppColors.greyColour,
+                      isBold: true,
+                    ),
+                  ),
+                  commonText(
+                    widget.email.replaceRange(
+                      3,
+                      widget.email.length - 3,
+                      '...',
+                    ),
+                    context: context,
+                  ),
+                ],
               ),
               commonText(
                 "enter 5 digit code that mentioned in the email",
@@ -137,6 +153,10 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                   }
                   // TODO: Verify OTP logic here
                   print("Entered OTP: $enteredCode");
+                  Get.to(
+                    () => SetNewPasswordScreen(),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 bgColor: AppColors.buttonColour,
                 fgColor: Colors.white,
@@ -157,7 +177,6 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                       context: context,
                       size: 14,
                       isBold: true,
-                      color: AppColors.greyColour,
                     ),
                     Column(
                       children: [

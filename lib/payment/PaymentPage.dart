@@ -1,6 +1,8 @@
+import 'package:bondly/payment/payment_sucessfull.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -18,6 +20,7 @@ class _PaymentPageState extends State<PaymentPage> {
   final TextEditingController postalCodeController = TextEditingController();
   final TextEditingController discountCodeController = TextEditingController();
 
+  bool summaryVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,23 +152,24 @@ class _PaymentPageState extends State<PaymentPage> {
             const SizedBox(height: 24),
 
             // Price summary
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Column(
-                children: [
-                  _paymentSummaryRow("Price", "\$5.99", context),
-                  const SizedBox(height: 8),
-                  _paymentSummaryRow("Discount", "-\$0.99", context),
-                  const SizedBox(height: 8),
-                  _paymentSummaryRow(
-                    "Total due",
-                    "\$5.00",
-                    context,
-                    isBold: true,
-                  ),
-                ],
+            if (summaryVisible)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Column(
+                  children: [
+                    _paymentSummaryRow("Price", "\$5.99", context),
+                    const SizedBox(height: 8),
+                    _paymentSummaryRow("Discount", "-\$0.99", context),
+                    const SizedBox(height: 8),
+                    _paymentSummaryRow(
+                      "Total due",
+                      "\$5.00",
+                      context,
+                      isBold: true,
+                    ),
+                  ],
+                ),
               ),
-            ),
 
             const SizedBox(height: 32),
 
@@ -174,6 +178,16 @@ class _PaymentPageState extends State<PaymentPage> {
               title: "Pay Now",
               onTap: () {
                 // TODO: Implement payment processing
+                if (summaryVisible) {
+                  Get.to(
+                    () => PaymentSuccessPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                } else {
+                  setState(() {
+                    summaryVisible = true;
+                  });
+                }
               },
               bgColor: AppColors.buttonColour,
               fgColor: Colors.white,

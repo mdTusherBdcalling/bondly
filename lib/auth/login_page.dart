@@ -1,5 +1,7 @@
+import 'package:bondly/auth/forget_password_page.dart';
 import 'package:bondly/auth/signup_page.dart';
 import 'package:bondly/colors.dart';
+import 'package:bondly/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:get/get.dart'; // your common widgets import
@@ -27,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                commonBackButton(),
+                commonBackButton(context: context),
                 SizedBox(height: 16),
                 // Title and subtitle
                 commonText("Log in", context: context, size: 28, isBold: true),
@@ -36,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Sign in to grow your love and wealth — together.",
                   context: context,
                   size: 14,
-                  color: AppColors.greyColour,
                 ),
                 const SizedBox(height: 32),
 
@@ -86,7 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const SizedBox.shrink(),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(
+                          () => ForgotPasswordScreen(),
+                          transition: Transition.rightToLeft,
+                        );
+                      },
                       child: commonText(
                         "Forgot password?",
 
@@ -119,7 +125,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       return;
                     }
 
-                    // Continue login process
+                    Get.to(
+                      () => RootPage(),
+                      transition: Transition.rightToLeft,
+                    );
                   },
 
                   height: 50,
@@ -135,12 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Expanded(child: Divider(thickness: 1)),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: commonText(
-                        "Or",
-                        context: context,
-                        size: 14,
-                        color: AppColors.greyColour,
-                      ),
+                      child: commonText("Or", context: context, size: 14),
                     ),
                     const Expanded(child: Divider(thickness: 1)),
                   ],
