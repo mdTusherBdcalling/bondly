@@ -1,5 +1,6 @@
 import 'package:bondly/colors.dart';
 import 'package:bondly/intro/splash_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
       title: 'System Theme Demo',
       theme: lightTheme,
       darkTheme: darkTheme,
-
+      themeMode: ThemeMode.system,
       home: SplashScreen(),
     );
   }

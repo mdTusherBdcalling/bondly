@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
 import 'package:get/get.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -16,7 +18,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool notificationEnabled = true;
-  bool darkModeEnabled = false;
+  late bool darkModeEnabled;
 
   Widget _settingsOption({
     required String title,
@@ -66,120 +68,136 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    darkModeEnabled = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: commonAppBar(context: context, title: "Settings"),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            commonText("Profile", context: context, size: 16, isBold: true),
-            const SizedBox(height: 12),
-            _settingsOption(
-              title: "Account Settings",
-              iconPath: "assets/settings/account.png",
-              onTap: () {
-                // Navigate to Account Settings page
-                Get.to(
-                  () => AccountSettingsPage(),
-                  transition: Transition.rightToLeft,
-                );
-              },
-            ),
-            _settingsOption(
-              title: "Notification",
-              iconPath: "assets/settings/notification.png",
-              trailing: Switch(
-                value: notificationEnabled,
-                onChanged: (val) {
-                  setState(() {
-                    notificationEnabled = val;
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              commonText("Profile", context: context, size: 16, isBold: true),
+              const SizedBox(height: 12),
+              _settingsOption(
+                title: "Account Settings",
+                iconPath: "assets/settings/account.png",
+                onTap: () {
+                  // Navigate to Account Settings page
+                  Get.to(
+                    () => AccountSettingsPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+              ),
+              _settingsOption(
+                title: "Notification",
+                iconPath: "assets/settings/notification.png",
+                trailing: Switch(
+                  value: notificationEnabled,
+                  onChanged: (val) {
+                    setState(() {
+                      notificationEnabled = val;
+                    });
+                  },
+                  activeColor: AppColors.buttonColour,
+                  inactiveThumbColor: AppColors.blackColour,
+                  inactiveTrackColor: AppColors.whiteColour,
+                ),
+              ),
+              _settingsOption(
+                title: "Payment Method",
+                iconPath: "assets/settings/payment.png",
+                onTap: () {
+                  // Navigate to Payment Method page
+                  Get.to(
+                    () => ChooseSoloPlanPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+              ),
+              _settingsOption(
+                title: "Privacy & Security",
+                iconPath: "assets/settings/privacy.png",
+                onTap: () {
+                  // Navigate to Privacy & Security page
+                  Get.to(
+                    () => PrivacyPolicyPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+              ),
+              _settingsOption(
+                title: "Dark Mood",
+                iconPath: "assets/settings/dark_mode.png",
+                trailing: Switch(
+                  value: darkModeEnabled,
+                  onChanged: (val) {
+                    if (val) {
+                      Get.changeThemeMode(ThemeMode.dark);
+                    } else {
+                      Get.changeThemeMode(ThemeMode.light);
+                    }
+                    setState(() {}); // optional if you want to rebuild local UI
+                  },
+
+                  activeColor: AppColors.buttonColour,
+                  inactiveThumbColor: AppColors.blackColour,
+                  inactiveTrackColor: AppColors.whiteColour,
+                ),
+              ),
+              const SizedBox(height: 24),
+              commonText("More", context: context, size: 16, isBold: true),
+              const SizedBox(height: 12),
+              _settingsOption(
+                title: "Help & Support",
+                iconPath: "assets/settings/help_and_supports.png",
+                onTap: () {
+                  // Navigate to Help & Support page
+                  Get.to(
+                    () => HelpSupportPage(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+              ),
+              _settingsOption(
+                title: "Share this app",
+                iconPath: "assets/settings/share.png",
+                onTap: () {
+                  SharePlus.instance.share(
+                    ShareParams(
+                      text: 'check out my website https://example.com',
+                    ),
+                  );
+                },
+              ),
+              _settingsOption(
+                title: "Rate this app",
+                iconPath: "assets/settings/rate.png",
+                onTap: () async {
+                  final InAppReview inAppReview = InAppReview.instance;
+                  bool isgooglePlayStoreInstalled =
+                      await inAppReview.isAvailable();
+
+                  if (isgooglePlayStoreInstalled) {
+                    inAppReview.requestReview();
+                  } else {
+                    // fallback - open Play Store page
+                    inAppReview.openStoreListing();
+                  }
+                },
+              ),
+              _settingsOption(
+                title: "Log Out",
+                iconPath: "assets/drawer/logout.png",
+                onTap: () {
+                  showLogoutBottomSheet(context, () {
+                    // Perform logout action
                   });
                 },
-                activeColor: AppColors.buttonColour,
-                inactiveThumbColor: AppColors.blackColour,
-                inactiveTrackColor: AppColors.whiteColour,
               ),
-            ),
-            _settingsOption(
-              title: "Payment Method",
-              iconPath: "assets/settings/payment.png",
-              onTap: () {
-                // Navigate to Payment Method page
-                Get.to(
-                  () => ChooseSoloPlanPage(),
-                  transition: Transition.rightToLeft,
-                );
-              },
-            ),
-            _settingsOption(
-              title: "Privacy & Security",
-              iconPath: "assets/settings/privacy.png",
-              onTap: () {
-                // Navigate to Privacy & Security page
-                Get.to(
-                  () => PrivacyPolicyPage(),
-                  transition: Transition.rightToLeft,
-                );
-              },
-            ),
-            _settingsOption(
-              title: "Dark Mood",
-              iconPath: "assets/settings/dark_mode.png",
-              trailing: Switch(
-                value: darkModeEnabled,
-                onChanged: (val) {
-                  if (val) {
-                    Get.changeThemeMode(ThemeMode.dark);
-                  } else {
-                    Get.changeThemeMode(ThemeMode.light);
-                  }
-                  setState(() {}); // optional if you want to rebuild local UI
-                },
-
-                activeColor: AppColors.buttonColour,
-                inactiveThumbColor: AppColors.blackColour,
-                inactiveTrackColor: AppColors.whiteColour,
-              ),
-            ),
-            const SizedBox(height: 24),
-            commonText("More", context: context, size: 16, isBold: true),
-            const SizedBox(height: 12),
-            _settingsOption(
-              title: "Help & Support",
-              iconPath: "assets/settings/help_and_supports.png",
-              onTap: () {
-                // Navigate to Help & Support page
-                Get.to(
-                  () => HelpSupportPage(),
-                  transition: Transition.rightToLeft,
-                );
-              },
-            ),
-            _settingsOption(
-              title: "Share this app",
-              iconPath: "assets/settings/share.png",
-              onTap: () {
-                // Share app functionality
-              },
-            ),
-            _settingsOption(
-              title: "Rate this app",
-              iconPath: "assets/settings/rate.png",
-              onTap: () {
-                // Rate app functionality
-              },
-            ),
-            _settingsOption(
-              title: "Log Out",
-              iconPath: "assets/drawer/logout.png",
-              onTap: () {
-                showLogoutBottomSheet(context, () {
-                  // Perform logout action
-                });
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -7,6 +7,8 @@ import 'package:bondly/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:share_plus/share_plus.dart';
 
 Widget commonText(
   String text, {
@@ -411,7 +413,7 @@ void showCustomMenu(BuildContext context) {
               onLogout: () {
                 // logout logic here
               },
-              onMenuTap: (index) {
+              onMenuTap: (index) async {
                 Navigator.of(context).pop(); // close popup first
 
                 switch (index) {
@@ -428,8 +430,25 @@ void showCustomMenu(BuildContext context) {
                     );
                     break;
                   case 2:
+                    SharePlus.instance.share(
+                      ShareParams(
+                        text: 'check out my website https://example.com',
+                      ),
+                    );
+
                     break;
                   case 3:
+                    final InAppReview inAppReview = InAppReview.instance;
+                    bool isgooglePlayStoreInstalled =
+                        await inAppReview.isAvailable();
+
+                    if (isgooglePlayStoreInstalled) {
+                      inAppReview.requestReview();
+                    } else {
+                      // fallback - open Play Store page
+                      inAppReview.openStoreListing();
+                    }
+
                     break;
                   case 4:
                     Get.to(
