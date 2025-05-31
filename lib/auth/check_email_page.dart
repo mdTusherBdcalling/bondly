@@ -105,11 +105,13 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                     ),
                   ),
                   commonText(
-                    widget.email.replaceRange(
-                      3,
-                      widget.email.length - 3,
-                      '...',
-                    ),
+                    (widget.email.length < 7)
+                        ? widget.email
+                        : widget.email.replaceRange(
+                          3,
+                          widget.email.length - 3,
+                          '...',
+                        ),
                     context: context,
                   ),
                 ],
@@ -181,14 +183,14 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                     Column(
                       children: [
                         commonText(
-                          "Resend email",
+                          "Resend OTP",
                           context: context,
                           size: 14,
                           isBold: true,
                           color: AppColors.buttonColour,
                         ),
                         Container(
-                          width: 90,
+                          width: 80,
                           height: 1,
                           color: AppColors.buttonColour,
                         ),

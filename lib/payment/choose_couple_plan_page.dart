@@ -4,14 +4,14 @@ import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
 import 'package:get/get.dart';
 
-class ChooseSoloPlanPage extends StatefulWidget {
-  const ChooseSoloPlanPage({Key? key}) : super(key: key);
+class ChooseCouplePlanPage extends StatefulWidget {
+  const ChooseCouplePlanPage({Key? key}) : super(key: key);
 
   @override
-  State<ChooseSoloPlanPage> createState() => _ChooseSoloPlanPageState();
+  State<ChooseCouplePlanPage> createState() => _ChooseCouplePlanPageState();
 }
 
-class _ChooseSoloPlanPageState extends State<ChooseSoloPlanPage> {
+class _ChooseCouplePlanPageState extends State<ChooseCouplePlanPage> {
   bool isMonthly = true;
 
   @override
@@ -38,7 +38,7 @@ class _ChooseSoloPlanPageState extends State<ChooseSoloPlanPage> {
               ),
             ),
             SizedBox(height: 16),
-            commonText("Solo Plan", context: context, size: 18, isBold: true),
+            commonText("Couple Plan", context: context, size: 18, isBold: true),
             const SizedBox(height: 16),
 
             // Toggle Buttons Row

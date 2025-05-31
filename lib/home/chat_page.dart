@@ -209,7 +209,9 @@ class _AiChatPageState extends State<AiChatPage> {
                   padding: const EdgeInsets.only(left: 8),
                   child: CircleAvatar(
                     radius: 16,
-                    backgroundImage: AssetImage("assets/ai.png"),
+                    backgroundImage: NetworkImage(
+                      "https://th.bing.com/th/id/OIP.dmOlrfKSyadMmI4FE0_R0wHaI_?w=740&h=898&rs=1&pid=ImgDetMain",
+                    ),
                   ),
                 ),
             ],

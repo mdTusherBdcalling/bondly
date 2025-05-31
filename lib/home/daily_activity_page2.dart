@@ -90,7 +90,7 @@ class _DailyActivityPage2State extends State<DailyActivityPage2> {
                           item.title,
                           context: context,
                           size: 16,
-                          color: Colors.white,
+                          color: AppColors.whiteColour,
                           isBold: true,
                         ),
                         const Spacer(),
@@ -98,7 +98,7 @@ class _DailyActivityPage2State extends State<DailyActivityPage2> {
                           item.amount,
                           context: context,
                           size: 16,
-                          color: Colors.white,
+                          color: AppColors.whiteColour,
                           isBold: true,
                         ),
                       ],
@@ -119,6 +119,10 @@ class _DailyActivityPage2State extends State<DailyActivityPage2> {
                       backgroundColor: AppColors.primaryBlueLight,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.whiteColour,
+                        ),
                       ),
                       minimumSize: Size(
                         MediaQuery.sizeOf(context).width * 0.4,
@@ -133,7 +137,7 @@ class _DailyActivityPage2State extends State<DailyActivityPage2> {
                     label: commonText(
                       "Add New Spend",
                       context: context,
-                      color: Colors.white,
+                      color: AppColors.whiteColour,
                       size: 16,
                       isBold: true,
                     ),

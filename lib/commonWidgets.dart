@@ -6,6 +6,7 @@ import 'package:bondly/settings/notification_page.dart';
 import 'package:bondly/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget commonText(
   String text, {
@@ -25,7 +26,7 @@ Widget commonText(
     maxLines: maxline,
     overflow: maxline != null ? TextOverflow.ellipsis : null,
     textAlign: textAlign,
-    style: TextStyle(
+    style: GoogleFonts.inter(
       fontSize: size,
       fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
       color: textColor,

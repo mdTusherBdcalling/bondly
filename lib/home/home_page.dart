@@ -1,6 +1,7 @@
 import 'package:bondly/home/budget_page.dart';
 import 'package:bondly/home/daily_activity_page.dart';
 import 'package:bondly/home/goals_page.dart';
+import 'package:bondly/home/join_account_page.dart';
 import 'package:bondly/home/transctions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/colors.dart';
@@ -40,6 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 24),
             _transactionSection(context),
             const SizedBox(height: 24),
+            commonText(
+              "Track Your Daily Activity",
+              context: context,
+              size: 16,
+              isBold: true,
+            ),
+            SizedBox(height: 12),
             InkWell(
               onTap: () {
                 Get.to(
@@ -125,36 +133,52 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 4),
               Row(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    width: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: AppColors.primaryBlue,
-                    ),
-                    child: Center(
-                      child: commonText(
-                        "Sourav Das",
-                        context: context,
-                        size: 12,
-                        color: AppColors.whiteColour,
+                  InkWell(
+                    onTap: () {
+                      Get.to(
+                        JoinAccountPage(),
+                        transition: Transition.rightToLeft,
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.primaryBlue,
+                      ),
+                      child: Center(
+                        child: commonText(
+                          "Sourav Das",
+                          context: context,
+                          size: 12,
+                          color: AppColors.whiteColour,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(width: 8),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    width: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: AppColors.primaryBlue,
-                    ),
-                    child: Center(
-                      child: commonText(
-                        "Jessica",
-                        context: context,
-                        size: 12,
-                        color: AppColors.whiteColour,
+                  InkWell(
+                    onTap: () {
+                      Get.to(
+                        JoinAccountPage(),
+                        transition: Transition.rightToLeft,
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.primaryBlue,
+                      ),
+                      child: Center(
+                        child: commonText(
+                          "Jessica",
+                          context: context,
+                          size: 12,
+                          color: AppColors.whiteColour,
+                        ),
                       ),
                     ),
                   ),

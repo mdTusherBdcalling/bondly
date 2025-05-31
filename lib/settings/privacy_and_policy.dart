@@ -1,6 +1,9 @@
+import 'package:bondly/settings/PasswordChangePage.dart';
+import 'package:bondly/settings/UpdatePartnerEmailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   PrivacyPolicyPage({super.key});
@@ -10,7 +13,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       "Update Partner Email",
       "assets/settings/email.png",
       onTap: () {
-        // Add navigation to Update Partner Email page
+        Get.to(UpdatePartnerEmailPage());
       },
     ),
     _PrivacyOption(
@@ -18,6 +21,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       "assets/settings/lock.png",
       onTap: () {
         // Add navigation to Password Change page
+        Get.to(PasswordChangePage());
       },
     ),
     _PrivacyOption(

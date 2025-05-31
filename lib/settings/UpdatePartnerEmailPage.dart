@@ -16,7 +16,7 @@ class _UpdatePartnerEmailPageState extends State<UpdatePartnerEmailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: commonAppBar(context: context, title: ""),
+      appBar: commonAppBar(context: context, title: "Change Partner Email"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
@@ -29,10 +29,10 @@ class _UpdatePartnerEmailPageState extends State<UpdatePartnerEmailPage> {
               isBoldTitle: true,
               keyboardType: TextInputType.emailAddress,
             ),
-            const SizedBox(height: 24),
+            Spacer(),
             commonButton(
               context: context,
-              title: "Invite Your Partner",
+              title: "Change Email",
               onTap: () {
                 // Implement invite logic here
                 ScaffoldMessenger.of(context).showSnackBar(

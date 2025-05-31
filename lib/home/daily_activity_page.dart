@@ -217,6 +217,9 @@
 import 'package:bondly/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
+import 'package:get/get.dart';
+
+import 'daily_activity_page2.dart';
 
 class DailyActivityPage extends StatefulWidget {
   const DailyActivityPage({Key? key}) : super(key: key);
@@ -346,6 +349,7 @@ class _DailyActivityPageState extends State<DailyActivityPage> {
               onTap: () {
                 // Handle submission logic
                 print("Daily activity added");
+                Get.to(DailyActivityPage2());
               },
               bgColor: AppColors.buttonColour,
               fgColor: Colors.white,

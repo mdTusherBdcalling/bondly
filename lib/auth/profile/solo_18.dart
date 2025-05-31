@@ -1,4 +1,4 @@
-import 'package:bondly/payment/ChoosePlanPage.dart';
+import 'package:bondly/payment/ChooseSoloPlanPage.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:get/get.dart';

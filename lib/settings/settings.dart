@@ -1,4 +1,4 @@
-import 'package:bondly/payment/ChoosePlanPage.dart';
+import 'package:bondly/payment/ChooseSoloPlanPage.dart';
 import 'package:bondly/settings/HelpSupportPage.dart';
 import 'package:bondly/settings/account_settings.dart';
 import 'package:bondly/settings/privacy_and_policy.dart';
