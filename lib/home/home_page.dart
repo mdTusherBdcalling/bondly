@@ -510,16 +510,11 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Expanded(
-              child: goalCard(
-                "Travel",
-                "\$699",
-                "assets/transport.png",
-                context,
-              ),
+              child: goalCard("Travel", "\$699", "assets/travel.png", context),
             ),
             SizedBox(width: 12),
             Expanded(
-              child: goalCard("Housing", "\$699", "assets/home.png", context),
+              child: goalCard("Housing", "\$699", "assets/house.png", context),
             ),
           ],
         ),
@@ -726,7 +721,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath, width: 32, color: Colors.white),
+          Image.asset(imagePath, width: 30),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
