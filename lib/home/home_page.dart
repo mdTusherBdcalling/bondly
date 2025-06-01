@@ -153,6 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           context: context,
                           size: 12,
                           maxline: 1,
+                          maxline: 1,
                           color: AppColors.whiteColour,
                         ),
                       ),
@@ -176,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Center(
                         child: commonText(
                           "Jessica",
+                          maxline: 1,
                           maxline: 1,
                           context: context,
                           size: 12,
@@ -417,6 +419,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "5.5%",
                             false,
                             "assets/money.png",
+                            "assets/money.png",
                             context,
                           ),
                         ],
@@ -456,6 +459,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
+          Image.asset(imagePath, width: 24, color: Colors.white),
           Image.asset(imagePath, width: 24, color: Colors.white),
           SizedBox(width: 12),
           Column(
@@ -511,9 +515,11 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: goalCard("Travel", "\$699", "assets/travel.png", context),
+              child: goalCard("Travel", "\$699", "assets/travel.png", context),
             ),
             SizedBox(width: 12),
             Expanded(
+              child: goalCard("Housing", "\$699", "assets/house.png", context),
               child: goalCard("Housing", "\$699", "assets/house.png", context),
             ),
           ],
@@ -529,6 +535,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: goalCard(
                 "Shopping",
                 "\$699",
+                "assets/shopping.png",
                 "assets/shopping.png",
                 context,
               ),
