@@ -1,6 +1,6 @@
 import 'package:bondly/auth/login_page.dart';
+import 'package:bondly/auth/warm_welcome_page_solo.dart';
 import 'package:bondly/colors.dart';
-import 'package:bondly/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:get/get.dart'; // your common widgets import
@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
 
                     Get.to(
-                      () => RootPage(),
+                      () => WormWelcomeScreenSolo(),
                       transition: Transition.rightToLeft,
                     );
                   },
@@ -174,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // Social signup buttons
                 OutlinedButton.icon(
                   onPressed: () {
-                    // TODO: Apple signup logic
+                    Get.to(WormWelcomeScreenSolo());
                   },
                   icon: Icon(
                     Icons.apple,
@@ -202,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 OutlinedButton.icon(
                   onPressed: () {
-                    // TODO: Google signup logic
+                    Get.to(WormWelcomeScreenSolo());
                   },
                   icon: Image.asset(
                     "assets/google_logo.png",

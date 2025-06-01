@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bondly/commonWidgets.dart';
 import 'package:bondly/colors.dart';
+import 'package:get/get.dart';
+
+import '../root_page.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
   const PaymentSuccessPage({Key? key}) : super(key: key);
@@ -62,6 +65,13 @@ class PaymentSuccessPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Spacer(flex: 2),
+            commonButton(
+              context: context,
+              title: "Continue",
+              onTap: () {
+                Get.to(RootPage());
+              },
+            ),
           ],
         ),
       ),

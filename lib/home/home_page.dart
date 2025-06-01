@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      width: 80,
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         color: AppColors.primaryBlue,
@@ -152,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           "Sourav Das",
                           context: context,
                           size: 12,
+                          maxline: 1,
                           color: AppColors.whiteColour,
                         ),
                       ),
@@ -167,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      width: 80,
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         color: AppColors.primaryBlue,
@@ -175,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Center(
                         child: commonText(
                           "Jessica",
+                          maxline: 1,
                           context: context,
                           size: 12,
                           color: AppColors.whiteColour,
@@ -414,7 +416,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "\$2,450",
                             "5.5%",
                             false,
-                            "assets/shoping.png",
+                            "assets/money.png",
                             context,
                           ),
                         ],
@@ -452,9 +454,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+
         children: [
-          Image.asset(imagePath),
+          Image.asset(imagePath, width: 24, color: Colors.white),
           SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -509,7 +511,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: goalCard(
-                "Transport",
+                "Travel",
                 "\$699",
                 "assets/transport.png",
                 context,
@@ -532,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: goalCard(
                 "Shopping",
                 "\$699",
-                "assets/shoping.png",
+                "assets/shopping.png",
                 context,
               ),
             ),
@@ -724,7 +726,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath),
+          Image.asset(imagePath, width: 32, color: Colors.white),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
