@@ -34,82 +34,88 @@ class CustomDrawer extends StatelessWidget {
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(userImagePath),
-              ),
-              const SizedBox(height: 12),
-              commonText(
-                userName,
-                context: context,
-                size: 18,
-                isBold: true,
-                color: Colors.white,
-              ),
-              commonText(
-                userRole,
-                context: context,
-                size: 14,
-                color: AppColors.greyColour,
-              ),
-              const SizedBox(height: 32),
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: menuItems.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 20),
-                itemBuilder: (context, index) {
-                  final item = menuItems[index];
-                  return InkWell(
-                    onTap: () => onMenuTap(index),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          item.iconPath,
-                          width: 24,
-                          height: 24,
-                          color: AppColors.buttonColour, // tint color
-                        ),
-                        const SizedBox(width: 16),
-                        commonText(
-                          item.title,
-                          context: context,
-                          size: 16,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 50),
-
-              ElevatedButton.icon(
-                onPressed: onLogout,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryBlueLight,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  minimumSize: Size(MediaQuery.sizeOf(context).width * 0.4, 48),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(userImagePath),
                 ),
-                icon: Image.asset(
-                  "assets/drawer/logout.png",
-                  width: 24,
-                  height: 24,
-                ),
-                label: commonText(
-                  "Log Out",
+                const SizedBox(height: 12),
+                commonText(
+                  userName,
                   context: context,
-                  color: Colors.white,
-                  size: 16,
+                  size: 18,
                   isBold: true,
+                  color: Colors.white,
                 ),
-              ),
-              SizedBox(height: 16),
-            ],
+                commonText(
+                  userRole,
+                  context: context,
+                  size: 14,
+                  color: AppColors.greyColour,
+                ),
+                const SizedBox(height: 32),
+                ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: menuItems.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 20),
+                  itemBuilder: (context, index) {
+                    final item = menuItems[index];
+                    return InkWell(
+                      onTap: () => onMenuTap(index),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            item.iconPath,
+                            width: 24,
+                            height: 24,
+                            color: Colors.white, // tint color
+                          ),
+                          const SizedBox(width: 16),
+                          commonText(
+                            item.title,
+                            context: context,
+                            size: 16,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 50),
+
+                ElevatedButton.icon(
+                  onPressed: onLogout,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryBlueLight,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    minimumSize: Size(
+                      MediaQuery.sizeOf(context).width * 0.4,
+                      48,
+                    ),
+                  ),
+                  icon: Image.asset(
+                    "assets/drawer/logout.png",
+                    width: 24,
+                    height: 24,
+                    color: Colors.white,
+                  ),
+                  label: commonText(
+                    "Log Out",
+                    context: context,
+                    color: Colors.white,
+                    size: 16,
+                    isBold: true,
+                  ),
+                ),
+                SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),

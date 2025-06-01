@@ -46,6 +46,7 @@ class _GoalOverviewPageState extends State<GoalOverviewPage> {
                               "assets/large_car.png",
                               width: 40,
                               height: 40,
+                              color: Colors.white,
                             ),
                             const SizedBox(width: 12),
                             Expanded(
@@ -227,7 +228,7 @@ class _GoalOverviewPageState extends State<GoalOverviewPage> {
                           size: 14,
                           color: AppColors.whiteColour,
                         ),
-                        Image.asset("assets/delete.png"),
+                        Image.asset("assets/delete.png", color: Colors.white),
                       ],
                     ),
                   ),

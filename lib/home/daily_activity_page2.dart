@@ -84,7 +84,12 @@ class _DailyActivityPage2State extends State<DailyActivityPage2> {
                     ),
                     child: Row(
                       children: [
-                        Image.asset(item.iconPath, width: 24, height: 24),
+                        Image.asset(
+                          item.iconPath,
+                          width: 24,
+                          height: 24,
+                          color: Colors.white,
+                        ),
                         const SizedBox(width: 12),
                         commonText(
                           item.title,

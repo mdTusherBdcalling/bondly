@@ -51,7 +51,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       option.iconPath,
                       width: 24,
                       height: 24,
-                      color: AppColors.buttonColour,
+                      color: AppColors.whiteColour,
                     ),
                     title: commonText(
                       option.title,

@@ -166,8 +166,8 @@ class _AiChatPageState extends State<AiChatPage> {
                       child: commonText(
                         message.text,
                         context: context,
+                        color: Colors.white,
                         size: 14,
-                        color: AppColors.whiteColour,
                       ),
                     ),
                     Row(
@@ -251,10 +251,10 @@ class _AiChatPageState extends State<AiChatPage> {
                 ),
                 child: TextField(
                   controller: _messageController,
-
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     hintText: "Send a message",
-
+                    hintStyle: TextStyle(color: Colors.black),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 12,

@@ -41,7 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
               iconPath,
               width: 24,
               height: 24,
-              color: AppColors.buttonColour,
+              color: AppColors.whiteColour,
             ),
             const SizedBox(width: 12),
             Expanded(

@@ -151,7 +151,7 @@ class BudgetsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            leading: Image.asset(imagePath),
+            leading: Image.asset(imagePath, color: Colors.white),
             contentPadding: EdgeInsets.zero,
             title: commonText(
               title,

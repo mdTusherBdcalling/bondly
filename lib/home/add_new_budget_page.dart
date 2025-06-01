@@ -41,7 +41,7 @@ class _AddNewBudgetPageState extends State<AddNewBudgetPage> {
                 title: "Budget Name",
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: Image.asset("assets/house.png"),
+                  child: Image.asset("assets/house.png", color: Colors.white),
                 ),
                 borderColor: AppColors.whiteColour,
                 hintTextColor: AppColors.whiteColour,

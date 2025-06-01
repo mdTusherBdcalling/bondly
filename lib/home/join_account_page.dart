@@ -211,7 +211,7 @@ class JoinAccountPage extends StatelessWidget {
             minVerticalPadding: 0,
             horizontalTitleGap: 5,
             contentPadding: const EdgeInsets.all(0),
-            leading: Image.asset(imagePath),
+            leading: Image.asset(imagePath, color: Colors.white),
             title: commonText(
               title,
               context: context,

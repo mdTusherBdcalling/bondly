@@ -99,7 +99,7 @@ class _AnalyzingPageState extends State<AnalyzingPage>
                   context: context,
                   size: 20,
                   isBold: true,
-                  color: AppColors.primaryBlue,
+
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 20),

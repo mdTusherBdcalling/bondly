@@ -136,257 +136,263 @@ class _BudgetOverviewPageState extends State<BudgetOverviewPage> {
 
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            // Budget Summary Card
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppColors.primaryBlueLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/large_car.png",
-                        width: 40,
-                        height: 40,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            commonText(
-                              "Travel",
-                              context: context,
-                              size: 14,
-                              color: AppColors.whiteColour,
-                              isBold: true,
-                            ),
-                            commonText(
-                              "\$750 of \$800",
-                              context: context,
-                              size: 12,
-                              color: AppColors.whiteColour,
-                            ),
-                            SizedBox(height: 4),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 2,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.yellow.shade100,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: commonText(
-                                "Near Limit",
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Budget Summary Card
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryBlueLight,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/large_car.png",
+                          color: Colors.white,
+                          width: 40,
+                          height: 40,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              commonText(
+                                "Travel",
                                 context: context,
-                                size: 10,
-                                color: Colors.orange.shade800,
+                                size: 14,
+                                color: AppColors.whiteColour,
                                 isBold: true,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          commonText(
-                            "Target Amount",
-                            context: context,
-                            color: AppColors.whiteColour,
-                            size: 10,
-                          ),
-
-                          commonText(
-                            "\$20,000",
-                            context: context,
-                            size: 18,
-                            color: AppColors.whiteColour,
-                            isBold: true,
-                          ),
-                          SizedBox(height: 8),
-                          commonText(
-                            "\$17,000 left",
-                            context: context,
-                            color: AppColors.whiteColour,
-                            size: 10,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  gradientLinearProgress(0.6, height: 8),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Activity & History section
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppColors.primaryBlueLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  commonText(
-                    "Activity & History",
-                    context: context,
-                    size: 16,
-                    isBold: true,
-                    color: AppColors.whiteColour,
-                  ),
-                  const SizedBox(height: 12),
-
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: activities.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      final activity = activities[index];
-                      return Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryBlue,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  commonText(
-                                    activity["type"] ?? "",
-                                    context: context,
-                                    size: 14,
-                                    color: AppColors.whiteColour,
-                                    isBold: true,
-                                  ),
-                                  commonText(
-                                    activity["date"] ?? "",
-                                    context: context,
-                                    size: 12,
-                                    color: AppColors.whiteColour,
-                                  ),
-                                ],
+                              commonText(
+                                "\$750 of \$800",
+                                context: context,
+                                size: 12,
+                                color: AppColors.whiteColour,
                               ),
-                            ),
+                              SizedBox(height: 4),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.yellow.shade100,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: commonText(
+                                  "Near Limit",
+                                  context: context,
+                                  size: 10,
+                                  color: Colors.orange.shade800,
+                                  isBold: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
                             commonText(
-                              activity["amount"] ?? "",
+                              "Target Amount",
                               context: context,
-                              size: 14,
+                              color: AppColors.whiteColour,
+                              size: 10,
+                            ),
+
+                            commonText(
+                              "\$20,000",
+                              context: context,
+                              size: 18,
                               color: AppColors.whiteColour,
                               isBold: true,
                             ),
+                            SizedBox(height: 8),
+                            commonText(
+                              "\$17,000 left",
+                              context: context,
+                              color: AppColors.whiteColour,
+                              size: 10,
+                            ),
                           ],
                         ),
-                      );
-                    },
-                  ),
-
-                  // Pause/Resume toggle
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 24),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: AppColors.primaryBlueLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  commonText(
-                    "Pause/Resume this budget",
-                    context: context,
-                    size: 14,
-                    color: AppColors.whiteColour,
-                  ),
-                  SizedBox(
-                    height: 30,
-                    child: FittedBox(
-                      child: Switch(
-                        value: isPaused,
-                        onChanged: (val) {
-                          setState(() {
-                            isPaused = val;
-                          });
-                        },
-                        splashRadius: 0,
-                        inactiveThumbColor: AppColors.blackColour,
-                        inactiveTrackColor: AppColors.whiteColour,
-                        activeColor: AppColors.buttonColour,
-                      ),
+                      ],
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 12),
+                    gradientLinearProgress(0.6, height: 8),
+                  ],
+                ),
               ),
-            ),
 
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // Buttons Withdraw and Add Money
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: showWithdrawDialog,
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: AppColors.buttonColour),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                    ),
-                    child: commonText(
-                      "Withdraw",
+              // Activity & History section
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryBlueLight,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    commonText(
+                      "Activity & History",
                       context: context,
-                      color: AppColors.buttonColour,
                       size: 16,
                       isBold: true,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: showDepositDialog,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.buttonColour,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                    ),
-                    child: commonText(
-                      "Add Money",
-                      context: context,
                       color: AppColors.whiteColour,
-                      size: 16,
-                      isBold: true,
+                    ),
+                    const SizedBox(height: 12),
+
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: activities.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        final activity = activities[index];
+                        return Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryBlue,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    commonText(
+                                      activity["type"] ?? "",
+                                      context: context,
+                                      size: 14,
+                                      color: AppColors.whiteColour,
+                                      isBold: true,
+                                    ),
+                                    commonText(
+                                      activity["date"] ?? "",
+                                      context: context,
+                                      size: 12,
+                                      color: AppColors.whiteColour,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              commonText(
+                                activity["amount"] ?? "",
+                                context: context,
+                                size: 14,
+                                color: AppColors.whiteColour,
+                                isBold: true,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+
+                    // Pause/Resume toggle
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 24),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryBlueLight,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    commonText(
+                      "Pause/Resume this budget",
+                      context: context,
+                      size: 14,
+                      color: AppColors.whiteColour,
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: FittedBox(
+                        child: Switch(
+                          value: isPaused,
+                          onChanged: (val) {
+                            setState(() {
+                              isPaused = val;
+                            });
+                          },
+                          splashRadius: 0,
+                          inactiveThumbColor: AppColors.blackColour,
+                          inactiveTrackColor: AppColors.whiteColour,
+                          activeColor: AppColors.buttonColour,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Buttons Withdraw and Add Money
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: showWithdrawDialog,
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: AppColors.buttonColour),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: commonText(
+                        "Withdraw",
+                        context: context,
+                        color: AppColors.buttonColour,
+                        size: 16,
+                        isBold: true,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: showDepositDialog,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColour,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: commonText(
+                        "Add Money",
+                        context: context,
+                        color: AppColors.whiteColour,
+                        size: 16,
+                        isBold: true,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

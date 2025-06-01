@@ -30,7 +30,7 @@ class _StockNewsPageState extends State<StockNewsPage> {
       "image":
           "https://th.bing.com/th/id/OIP.MLOFSCuoQ10MMO3EqYXdvQHaEK?rs=1&pid=ImgDetMain",
       "logo":
-          "https://cdn2.vectorstock.com/i/1000x1000/48/26/bbc-news-logo-with-red-background-vector-42974826.jpg",
+          "https://th.bing.com/th/id/OIP.MLOFSCuoQ10MMO3EqYXdvQHaEK?rs=1&pid=ImgDetMain",
     },
   );
 
